@@ -2,17 +2,28 @@
 
 {% block content %}
 
-<h2><a href="{% url 'books_cbv:book_list' %}">Books CBV</a></h2>
+<!-- <h2><a href="{% url 'books_cbv:book_list' %}">Books CBV</a></h2> -->
 
-<ul>
+<table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Pages</th>
+      <th>Create at</th>
+      <th>Edited at</th>
+    </tr>
+
     {% for book in object_list %}
-    <li>{{ book.name }}  ({{ book.pages }} Pages)
-    <a href="{% url 'books_cbv:book_edit' book.id %}">edit</a>
-    <a href="{% url 'books_cbv:book_delete' book.id %}">delete</a>
-    </li>
+    <tr>
+      <td>{{ book.name }}</td>
+      <td>{{ book.pages }}</td>
+      <td>{{ book.created_at }}</td>
+      <td>{{ book.updated_at }}</td>
+      <td><a href="{% url 'books_cbv:book_edit' book.id %}">edit</a></td>
+      <td><a href="{% url 'books_cbv:book_delete' book.id %}">delete</a></td>
+    </tr>
     {% endfor %}
-</ul>
+  </table>
 
-<a href="{% url 'books_cbv:book_new' %}">New</a>
+<a href="{% url 'books_cbv:book_new' %}">Add New</a>
 
 {% endblock %}
